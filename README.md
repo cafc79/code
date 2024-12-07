@@ -4,6 +4,7 @@
 Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz del directorio de tu proyecto, al igual que el archivo [.jar](https://pages.github.com/)
 1. En la terminal, navega al directorio y Construye la Imagen ejecutando:
 > docker build -t mi-app .
+
 > [!NOTE]
 > - [ ] -t mi-app imagen: Especifica el nombre de la imagen.
 > - [ ] .: Indica que Docker debería buscar el Dockerfile en el directorio actual.
