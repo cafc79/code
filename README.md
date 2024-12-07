@@ -5,8 +5,8 @@ Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz d
 1. En la terminal, navega al directorio y Construye la Imagen ejecutando:
 > docker build -t mi-app .
 > [!NOTE]
-- [ ] -t mi-app imagen: Especifica el nombre de la imagen.
-- [ ] .: Indica que Docker debería buscar el Dockerfile en el directorio actual.
+> - [ ] -t mi-app imagen: Especifica el nombre de la imagen.
+> - [ ] .: Indica que Docker debería buscar el Dockerfile en el directorio actual.
  
 ## Despliegue de un Contenedor
 
