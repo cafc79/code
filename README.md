@@ -22,7 +22,8 @@ Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz d
 ```ruby
 > curl http://localhost:3000
 ```
-![image](https://github.com/user-attachments/assets/73840019-6d25-406c-aa75-a5430ea5b708)
+> [!IMPORTANT]
+> Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request
 
 
 > [!NOTE]
