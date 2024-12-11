@@ -1,7 +1,7 @@
 # Contenedores, Kubernetes y GKE
 
 ## 1. Contenedores en Docker
-## Construcción de la Imagen
+### Construcción de la Imagen
 Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz del directorio de tu proyecto, al igual que el archivo [.jar](https://pages.github.com/)
 1. En la terminal, navega al directorio y Construye la Imagen ejecutando:
 ```ruby
@@ -12,7 +12,7 @@ Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz d
 > - [ ] -t mi-app imagen: Especifica el nombre de la imagen.
 > - [ ] .: Indica que Docker debería buscar el Dockerfile en el directorio actual.
  
-## Despliegue de un Contenedor
+### Despliegue de un Contenedor
 
 2. Ejecuta el Contenedor: Crea y ejecuta el contenedor con el siguiente comando:
 ```ruby
