@@ -30,8 +30,8 @@ Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz d
 ## 2.  Kubernetes en GKE
 Para desplegar una aplicación en Google Kubernetes Engine (GKE) usando un manifiesto de Kubernetes, necesitas seguir estos pasos clave. Detallo cada etapa desde la preparación del entorno hasta el despliegue:
 
-1. Configuración Inicial de GKE
-### 1.  Autenticarte en Google Cloud Platform (GCP):
+### 1. Configuración Inicial de GKE
+#### 1.  Autenticarte en Google Cloud Platform (GCP):
 
 Asegúrate de tener configurado el CLI de GCP (gcloud).
 Inicia sesión:
@@ -44,7 +44,7 @@ Selecciona el proyecto donde desplegarás la aplicación:
 gcloud config set project [PROJECT_ID]
 ```
 
-### 2.  Crear un Clúster de GKE:
+#### 2.  Crear un Clúster de GKE:
 Configura el clúster de GKE:
 ```ruby
 gcloud container clusters create [CLUSTER_NAME] \
@@ -57,7 +57,7 @@ Ejemplo:
 gcloud container clusters create my-cluster --num-nodes=3 --region=us-central1
 ```
 
-### 3.  Configurar credenciales locales:
+#### 3.  Configurar credenciales locales:
 
 Descarga el archivo de credenciales del clúster para interactuar con Kubernetes:
 ```ruby
@@ -71,12 +71,11 @@ kubectl get nodes
 
 Esto mostrará los nodos del clúster si todo está configurado correctamente.
 
-## 2. Preparar el Manifiesto de Kubernetes
+### 2. Preparar el Manifiesto de Kubernetes
 Asegúrate de que tu manifiesto YAML esté listo y correctamente configurado. Por ejemplo:
 
 Manifiesto de Despliegue y Servicio
-yaml
-Copy code
+```ruby
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -98,7 +97,8 @@ spec:
         image: gcr.io/[PROJECT_ID]/my-image:latest
         ports:
         - containerPort: 80
----
+```
+```ruby
 apiVersion: v1
 kind: Service
 metadata:
@@ -111,23 +111,25 @@ spec:
     port: 80
     targetPort: 80
   type: LoadBalancer
-3. Construir y Subir la Imagen al Registro de Contenedores
-Crear la imagen Docker:
+```
 
+###3. Construir y Subir la Imagen al Registro de Contenedores
+Crear la imagen Docker:
 Desde tu directorio de proyecto:
-bash
-Copy code
+```ruby
 docker build -t gcr.io/[PROJECT_ID]/my-image:latest .
+```
+
 Subir la imagen al Container Registry:
 
 Asegúrate de autenticar Docker con GCP:
-bash
-Copy code
+```ruby
 gcloud auth configure-docker
+```
 Sube la imagen:
-bash
-Copy code
+```ruby
 docker push gcr.io/[PROJECT_ID]/my-image:latest
+```
 4. Desplegar la Aplicación en GKE
 Aplicar el manifiesto:
 
