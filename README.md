@@ -113,7 +113,7 @@ spec:
   type: LoadBalancer
 ```
 
-###3. Construir y Subir la Imagen al Registro de Contenedores
+### 3. Construir y Subir la Imagen al Registro de Contenedores
 Crear la imagen Docker:
 Desde tu directorio de proyecto:
 ```ruby
@@ -130,49 +130,50 @@ Sube la imagen:
 ```ruby
 docker push gcr.io/[PROJECT_ID]/my-image:latest
 ```
-4. Desplegar la Aplicación en GKE
+
+### 4. Desplegar la Aplicación en GKE
 Aplicar el manifiesto:
-
 Usa el comando kubectl apply para desplegar tu aplicación:
-bash
-Copy code
+```ruby
 kubectl apply -f [MANIFEST_FILE].yaml
+```
+
 Ejemplo:
-bash
-Copy code
+```ruby
 kubectl apply -f my-app.yaml
+```
+
 Verifica el despliegue:
-
 Asegúrate de que los pods estén funcionando:
-bash
-Copy code
+```ruby
 kubectl get pods
+```
+
 Revisa el servicio para obtener la dirección IP externa:
-bash
-Copy code
+```ruby
 kubectl get service my-service
-5. Probar la Aplicación
+```
+
+### 5. Probar la Aplicación
 Una vez que el servicio esté expuesto, accede a la aplicación desde la dirección IP externa proporcionada por el servicio LoadBalancer.
-6. Limpieza (Opcional)
+
+### 6. Limpieza (Opcional)
 Si quieres eliminar los recursos desplegados:
-
-bash
-Copy code
+```ruby
 kubectl delete -f [MANIFEST_FILE].yaml
+```
 Si no necesitas el clúster de GKE, elimínalo para evitar costos innecesarios:
-
-bash
-Copy code
+```ruby
 gcloud container clusters delete [CLUSTER_NAME] --region [REGION]
-Mejores Prácticas
-Gestionar Versiones de la Imagen:
+```
 
+### Mejores Prácticas
+1. Gestionar Versiones de la Imagen:
 Usa etiquetas de versión específicas (my-image:v1.0.0) en lugar de latest para garantizar reproducibilidad.
-Configurar Recursos y Límites:
 
+2. Configurar Recursos y Límites:
 Define los recursos de CPU y memoria para los contenedores:
-yaml
-Copy code
+```ruby
 resources:
   requests:
     memory: "256Mi"
@@ -180,20 +181,21 @@ resources:
   limits:
     memory: "512Mi"
     cpu: "1"
-Probar en Ambientes Locales:
+```
 
+3. Probar en Ambientes Locales:
 Usa Minikube o Kind para validar el manifiesto antes de desplegar en GKE.
-Habilitar Autoescalado:
 
+5. Habilitar Autoescalado:
 Configura el autoescalador en tu clúster de GKE:
-bash
-Copy code
+```ruby
 gcloud container clusters update [CLUSTER_NAME] \
   --enable-autoscaling \
   --min-nodes=1 \
   --max-nodes=5
-Monitorizar la Aplicación:
+```ruby
 
+Monitorizar la Aplicación:
 5.  Usa Google Cloud Monitoring para rastrear el rendimiento y estado de tu aplicación.
 
 > [!NOTE]
