@@ -186,14 +186,14 @@ resources:
 3. Probar en Ambientes Locales:
 Usa Minikube o Kind para validar el manifiesto antes de desplegar en GKE.
 
-5. Habilitar Autoescalado:
+4. Habilitar Autoescalado:
 Configura el autoescalador en tu clúster de GKE:
 ```ruby
 gcloud container clusters update [CLUSTER_NAME] \
   --enable-autoscaling \
   --min-nodes=1 \
   --max-nodes=5
-```ruby
+```
 
 Monitorizar la Aplicación:
 5.  Usa Google Cloud Monitoring para rastrear el rendimiento y estado de tu aplicación.
