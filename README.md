@@ -81,9 +81,8 @@ gcloud run deploy my-container \
   --platform managed \
   --allow-unauthenticated
 ```
-[PROJECT_ID]: ID de tu proyecto de Google Cloud.
-
-[REGION]: Por ejemplo, us-central1.
+#### [PROJECT_ID]: ID de tu proyecto de Google Cloud.
+#### [REGION]: Por ejemplo, us-central1.
 
 Obtén la URL de tu aplicación:
 ```ruby
