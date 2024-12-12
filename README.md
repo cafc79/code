@@ -97,6 +97,89 @@ Limitaciones
 Menor control sobre la infraestructura comparado con GKE.
 Algunas configuraciones avanzadas pueden no estar disponibles.
 
+### 2.2. Usando Google Kubernetes Engine (GKE)
+GKE ofrece un control total sobre la ejecución de contenedores en clústeres de Kubernetes.
+
+Autenticarte en Google Cloud:
+```ruby
+gcloud auth login
+gcloud config set project [PROJECT_ID]
+```
+
+Crear un Clúster de GKE:
+```ruby
+gcloud container clusters create [CLUSTER_NAME] \
+  --num-nodes=3 \
+  --region=[REGION]
+```
+
+Configurar kubectl para acceder al clúster:
+```ruby
+gcloud container clusters get-credentials [CLUSTER_NAME] --region [REGION]
+```
+
+Verifica la conectividad:
+```ruby
+kubectl get nodes
+```
+
+Construye y sube la imagen Docker (igual que en Cloud Run):
+```ruby
+docker build -t gcr.io/[PROJECT_ID]/my-container:v1 .
+docker push gcr.io/[PROJECT_ID]/my-container:v1
+```
+
+Crea un archivo YAML (por ejemplo, deployment.yaml) para desplegar el contenedor en GKE:
+```ruby
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-container
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-container
+  template:
+    metadata:
+      labels:
+        app: my-container
+    spec:
+      containers:
+      - name: my-container
+        image: gcr.io/[PROJECT_ID]/my-container:v1
+        ports:
+        - containerPort: 8080
+```
+```ruby
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-container-service
+spec:
+  selector:
+    app: my-container
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+```
+
+Aplica el manifiesto para crear el despliegue y el servicio:
+```ruby
+kubectl apply -f deployment.yaml
+```
+
+Verifica los pods y servicios:
+```ruby
+kubectl get pods
+kubectl get services
+```
+
+Accede a tu aplicación usando la IP externa del servicio LoadBalancer.
+
+
 ## 3.  Kubernetes en GKE
 Para desplegar una aplicación en Google Kubernetes Engine (GKE) usando un manifiesto de Kubernetes, necesitas seguir estos pasos clave. Detallo cada etapa desde la preparación del entorno hasta el despliegue:
 
