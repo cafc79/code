@@ -32,7 +32,7 @@ EXPOSE 8082
 > curl http://localhost:3000
 ```
 
-> [!NOTE]
+> [!WARNING]
 > Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request.
 
 > [!IMPORTANT]
@@ -352,21 +352,3 @@ gcloud container clusters update [CLUSTER_NAME] \
   --min-nodes=1 \
   --max-nodes=5
 ```
-
-> [!TIP]
-> Monitorizar la Aplicación: Usa Google Cloud Monitoring para rastrear el rendimiento y estado de tu aplicación.
-
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-
-
-
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
-
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
-
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.> [!NOTE]
-> Useful information that users should know, even when skimming content.
