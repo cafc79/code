@@ -188,8 +188,8 @@ Accede a tu aplicación usando la IP externa del servicio LoadBalancer.
 ## 3.  Kubernetes en GKE
 Para desplegar una aplicación en Google Kubernetes Engine (GKE) usando un manifiesto de Kubernetes, necesitas seguir estos pasos clave. Detallo cada etapa desde la preparación del entorno hasta el despliegue:
 
-### 1. Configuración Inicial de GKE
-#### 1.  Autenticarte en Google Cloud Platform (GCP):
+### 3.1. Configuración Inicial de GKE
+#### Autenticarte en Google Cloud Platform (GCP):
 
 Asegúrate de tener configurado el CLI de GCP (gcloud).
 Inicia sesión:
@@ -202,7 +202,7 @@ Selecciona el proyecto donde desplegarás la aplicación:
 gcloud config set project [PROJECT_ID]
 ```
 
-#### 2.  Crear un Clúster de GKE:
+#### 3.2.  Crear un Clúster de GKE:
 Configura el clúster de GKE:
 ```ruby
 gcloud container clusters create [CLUSTER_NAME] \
@@ -215,7 +215,7 @@ Ejemplo:
 gcloud container clusters create my-cluster --num-nodes=3 --region=us-central1
 ```
 
-#### 3.  Configurar credenciales locales:
+#### 3.3.  Configurar credenciales locales:
 
 Descarga el archivo de credenciales del clúster para interactuar con Kubernetes:
 ```ruby
@@ -229,7 +229,7 @@ kubectl get nodes
 
 Esto mostrará los nodos del clúster si todo está configurado correctamente.
 
-### 2. Preparar el Manifiesto de Kubernetes
+### 3.4. Preparar el Manifiesto de Kubernetes
 Asegúrate de que tu manifiesto YAML esté listo y correctamente configurado. Por ejemplo:
 
 Manifiesto de Despliegue y Servicio
@@ -271,7 +271,7 @@ spec:
   type: LoadBalancer
 ```
 
-### 3. Construir y Subir la Imagen al Registro de Contenedores
+### 3.5. Construir y Subir la Imagen al Registro de Contenedores
 Crear la imagen Docker:
 Desde tu directorio de proyecto:
 ```ruby
@@ -289,7 +289,7 @@ Sube la imagen:
 docker push gcr.io/[PROJECT_ID]/my-image:latest
 ```
 
-### 4. Desplegar la Aplicación en GKE
+### 3.6. Desplegar la Aplicación en GKE
 Aplicar el manifiesto:
 Usa el comando kubectl apply para desplegar tu aplicación:
 ```ruby
@@ -312,10 +312,10 @@ Revisa el servicio para obtener la dirección IP externa:
 kubectl get service my-service
 ```
 
-### 5. Probar la Aplicación
+### 3.7. Probar la Aplicación
 Una vez que el servicio esté expuesto, accede a la aplicación desde la dirección IP externa proporcionada por el servicio LoadBalancer.
 
-### 6. Limpieza (Opcional)
+### 3.8. Limpieza (Opcional)
 Si quieres eliminar los recursos desplegados:
 ```ruby
 kubectl delete -f [MANIFEST_FILE].yaml
