@@ -33,7 +33,8 @@ EXPOSE 8082
 > curl http://localhost:3000
 ```
 > [!IMPORTANT]
-> Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request
+> Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request.
+> EXPOSE 8082
 
 
 ## 2. Contenedores en Google Cloud
