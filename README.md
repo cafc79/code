@@ -31,8 +31,11 @@ EXPOSE 8082
 ```ruby
 > curl http://localhost:3000
 ```
-> [!IMPORTANT]
+
+> [!NOTE]
 > Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request.
+
+> [!IMPORTANT]
 > EXPOSE 8082
 
 
@@ -350,14 +353,13 @@ gcloud container clusters update [CLUSTER_NAME] \
   --max-nodes=5
 ```
 
-Monitorizar la Aplicación:
-5.  Usa Google Cloud Monitoring para rastrear el rendimiento y estado de tu aplicación.
+> [!TIP]
+> Monitorizar la Aplicación: Usa Google Cloud Monitoring para rastrear el rendimiento y estado de tu aplicación.
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 
-> [!TIP]
-> Helpful advice for doing things better or more easily.
+
 
 > [!IMPORTANT]
 > Key information users need to know to achieve their goal.
