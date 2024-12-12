@@ -11,7 +11,6 @@ CMD java -jar /app/ms-api-service-0.0.1-SNAPSHOT.jar
 EXPOSE 8082
 ```
 
-
 1. En la terminal, navega al directorio y Construye la Imagen ejecutando:
 ```ruby
 > docker build -t mi-app .
@@ -42,8 +41,61 @@ Desplegar un contenedor Docker en Google Cloud es un proceso que involucra Googl
 
 ### 2.1. Usando Google Cloud Run
 Google Cloud Run es un servicio totalmente gestionado que simplifica el despliegue de contenedores. Solo necesitas una imagen Docker y Cloud Run se encarga de la infraestructura.
+Crear la Imagen Docker
+Desde el directorio del proyecto, crea un archivo Dockerfile
+```ruby
+FROM registry.access.redhat.com/ubi8/openjdk-11-runtime:1.13-1
+WORKDIR /app
+COPY ./ms-api-service-0.0.1-SNAPSHOT.jar /app/ms-api-service-0.0.1-SNAPSHOT.jar
+CMD java -jar /app/ms-api-service-0.0.1-SNAPSHOT.jar
+EXPOSE 8082
+```
 
+Construye la imagen Docker:
+```ruby
+docker build -t gcr.io/[PROJECT_ID]/my-container:v1 .
+```
 
+Subir la Imagen a Google Container Registry (GCR)
+Configura Docker para autenticarte con GCR:
+```ruby
+gcloud auth configure-docker}
+```
+
+Sube la imagen al Container Registry:
+```ruby
+docker push gcr.io/[PROJECT_ID]/my-container:v1
+```
+
+Desplegar el Contenedor en Google Cloud Run
+Habilita el servicio de Cloud Run:
+```ruby
+gcloud services enable run.googleapis.com
+```
+
+Despliega el contenedor:
+```ruby
+gcloud run deploy my-container \
+  --image gcr.io/[PROJECT_ID]/my-container:v1 \
+  --region [REGION] \
+  --platform managed \
+  --allow-unauthenticated
+```
+[PROJECT_ID]: ID de tu proyecto de Google Cloud.
+[REGION]: Por ejemplo, us-central1.
+
+Obtén la URL de tu aplicación:
+```ruby
+gcloud run services describe my-container --region [REGION] --format="value(status.url)"
+```
+
+Ventajas de Cloud Run
+Totalmente gestionado (no necesitas administrar infraestructura).
+Escala automáticamente según la carga.
+Pago por uso (solo pagas cuando el contenedor se ejecuta).
+Limitaciones
+Menor control sobre la infraestructura comparado con GKE.
+Algunas configuraciones avanzadas pueden no estar disponibles.
 
 ## 3.  Kubernetes en GKE
 Para desplegar una aplicación en Google Kubernetes Engine (GKE) usando un manifiesto de Kubernetes, necesitas seguir estos pasos clave. Detallo cada etapa desde la preparación del entorno hasta el despliegue:
