@@ -153,8 +153,7 @@ spec:
         image: gcr.io/[PROJECT_ID]/my-container:v1
         ports:
         - containerPort: 8080
-```
-```ruby
+---
 apiVersion: v1
 kind: Service
 metadata:
