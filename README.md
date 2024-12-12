@@ -59,7 +59,7 @@ docker build -t gcr.io/[PROJECT_ID]/my-container:v1 .
 Subir la Imagen a Google Container Registry (GCR)
 Configura Docker para autenticarte con GCR:
 ```ruby
-gcloud auth configure-docker}
+gcloud auth configure-docker
 ```
 
 Sube la imagen al Container Registry:
@@ -82,6 +82,7 @@ gcloud run deploy my-container \
   --allow-unauthenticated
 ```
 [PROJECT_ID]: ID de tu proyecto de Google Cloud.
+
 [REGION]: Por ejemplo, us-central1.
 
 Obtén la URL de tu aplicación:
