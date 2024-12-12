@@ -2,7 +2,16 @@
 
 ## 1. Contenedores en Docker
 ### Construcción de la Imagen
-Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz del directorio de tu proyecto, al igual que el archivo [.jar](https://pages.github.com/)
+Asegúrate de que el [Dockerfile](https://github.com/cafc79/ms-api-service/blob/main/Dockerfile) está en la raíz del directorio de tu proyecto, al igual que el archivo [.jar](https://github.com/cafc79/ms-api-service/blob/main/target/ms-api-service-0.0.1-SNAPSHOT.jar)
+```ruby
+FROM registry.access.redhat.com/ubi8/openjdk-11-runtime:1.13-1
+WORKDIR /app
+COPY ./ms-api-service-0.0.1-SNAPSHOT.jar /app/ms-api-service-0.0.1-SNAPSHOT.jar
+CMD java -jar /app/ms-api-service-0.0.1-SNAPSHOT.jar
+EXPOSE 8082
+```
+
+
 1. En la terminal, navega al directorio y Construye la Imagen ejecutando:
 ```ruby
 > docker build -t mi-app .
@@ -27,7 +36,15 @@ Asegúrate de que el [Dockerfile](https://pages.github.com/) está en la raíz d
 > Recuerda que el mapeo de puertos, debe coincidir entre el puerto que expone el contenedor, con el puerto en el cual del host al que se hace referencia en el request
 
 
-## 2.  Kubernetes en GKE
+## 2. Contenedores en Google Cloud
+Desplegar un contenedor Docker en Google Cloud es un proceso que involucra Google Kubernetes Engine (GKE), Compute Engine, o directamente Google Cloud Run, dependiendo del nivel de control y abstracción que prefieras. A continuación, te describo ampliamente cómo hacerlo utilizando Google Cloud Run (para simplicidad) y Google Kubernetes Engine (GKE) (para mayor control).
+
+### 2.1. Usando Google Cloud Run
+Google Cloud Run es un servicio totalmente gestionado que simplifica el despliegue de contenedores. Solo necesitas una imagen Docker y Cloud Run se encarga de la infraestructura.
+
+
+
+## 3.  Kubernetes en GKE
 Para desplegar una aplicación en Google Kubernetes Engine (GKE) usando un manifiesto de Kubernetes, necesitas seguir estos pasos clave. Detallo cada etapa desde la preparación del entorno hasta el despliegue:
 
 ### 1. Configuración Inicial de GKE
